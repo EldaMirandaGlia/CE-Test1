@@ -1,24 +1,407 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <script async src="https://api.beta.glia.com/salemove_integration.js"></script>
-  <title>CE Testing Site</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CE Client Engineering Bank</title>
     <style>
-    h1  {color:#7C19DD;}
-    h1  {font-family:roboto;}
-    img {
-      width:50%;
-    }
+        :root {
+            --primary-dark: #0f1026;
+            --primary-purple: #4c2ba3;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.1rem;
+            line-height: 1.1;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a.active {
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-purple);
+        }
+
+        .btn-login {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Main Content Section */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-dark);
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .hero-img-placeholder {
+            width: 100%;
+            height: 260px;
+            background-color: #e5e7eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 2.5rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: var(--primary-purple);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Floating Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .chat-icon {
+            width: 14px;
+            height: 14px;
+            background-color: #3b82f6;
+            border-radius: 50% 50% 0 50%;
+        }
+
+        /* Responsive Layout Adjustments */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 1rem 1.5rem;
+            }
+        }
     </style>
+</head>
+<body>
 
-  </head>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">CE</div>
+            <div class="logo-text">CLIENT ENGINEERING<span>BANK</span></div>
+        </div>
+        <nav>
+            <a href="#" class="active">Personal</a>
+            <a href="#">Business</a>
+            <a href="#">Loans</a>
+            <a href="#">Investing</a>
+            <a href="#">Help</a>
+        </nav>
+        <a href="#" class="btn-login">Log In</a>
+    </header>
 
-  <body>
-    <center>
-      <img src="images/Full LOGO_black.png" alt="CE logo" style="width:750px">
-    </center>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to your financial future.</h1>
+                <p>Manage, save, and grow with CE Bank.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary">Open an Account</a>
+                    <a href="#" class="btn-secondary">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-images">
+                <div class="hero-img-placeholder">
+                    <!-- Replace with image path e.g. <img src="advisor.jpg" alt="Advisor"> -->
+                    <span>Advisor Image</span>
+                </div>
+                <div class="hero-img-placeholder">
+                    <!-- Replace with image path e.g. <img src="mobile-banking.jpg" alt="Mobile Banking"> -->
+                    <span>Mobile Banking Image</span>
+                </div>
+            </div>
+        </section>
 
-    <h1 style="text-align:center;">Welcome to our testing site!</h2>
-  </body>
+        <!-- Features Section -->
+        <section class="features">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor"/>
+                        <path d="M12 12h.01" stroke="currentColor"/>
+                        <path d="M17 12h.01" stroke="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Checking & Savings</h3>
+                <p>Earn higher interest and enjoy zero monthly fees.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10z" stroke="currentColor"/>
+                        <path d="M9 21V12h6v9" stroke="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Home & Auto Loans</h3>
+                <p>Get competitive rates and quick online approval.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 17l6-6 4 4 8-8" stroke="currentColor"/>
+                        <path d="M14 7h7v7" stroke="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Investment Planning</h3>
+                <p>Secure your future with personalized wealth management.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Links -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Security</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-icon"></div>
+        <span>Let's talk!</span>
+    </div>
+
+</body>
 </html>
