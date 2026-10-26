@@ -3,405 +3,318 @@
 <head>
     <script async src="https://api.beta.glia.com/salemove_integration.js"></script>
     <meta charset="UTF-8">
+    <!-- Ensures the website looks good on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CE Client Engineering Bank</title>
+    <title>Nexus Bank - Minimalist Mockup</title>
+    
+    <!-- Load Google Fonts (Inter for a clean, minimalistic look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure custom colors matching your request -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#6b21a8', // Deep Purple
+                            lightPurple: '#f3e8ff', // Very light purple for backgrounds
+                            green: '#10b981',  // Emerald Green
+                            white: '#ffffff',
+                            gray: '#f9fafb'    // Off-white for subtle contrast
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS to ensure smooth transitions -->
     <style>
-        :root {
-            --primary-dark: #0f1026;
-            --primary-purple: #4c2ba3;
-            --text-dark: #1f2937;
-            --text-muted: #6b7280;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: theme('colors.brand.gray');
+            color: #333;
         }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            background-color: var(--primary-dark);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .logo-text {
-            font-weight: 800;
-            font-size: 1.1rem;
-            line-height: 1.1;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        nav a.active {
-            font-weight: 600;
-        }
-
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-purple);
-        }
-
-        .btn-login {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 0.6rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Main Content Section */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            width: 100%;
-            flex-grow: 1;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .hero-content h1 {
-            font-size: 3.2rem;
-            line-height: 1.1;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .hero-content p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 0.8rem 1.6rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-dark);
-            border: 1px solid var(--primary-dark);
-            padding: 0.8rem 1.6rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .hero-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .hero-img-placeholder {
-            width: 100%;
-            height: 260px;
-            background-color: #e5e7eb;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero-img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Feature Cards */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .card {
-            background-color: var(--white);
-            padding: 2.5rem 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-icon svg {
-            width: 48px;
-            height: 48px;
-            fill: none;
-            stroke: var(--primary-purple);
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 1.5rem 0;
-            text-align: center;
-            background-color: var(--white);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Floating Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--white);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        .chat-icon {
-            width: 14px;
-            height: 14px;
-            background-color: #3b82f6;
-            border-radius: 50% 50% 0 50%;
-        }
-
-        /* Responsive Layout Adjustments */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            .features {
-                grid-template-columns: 1fr;
-            }
-            header {
-                padding: 1rem 1.5rem;
-            }
+        /* Hide sections by default if they have the 'hidden' class */
+        .hidden-section {
+            display: none;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-    <!-- Header / Navigation -->
-    <header>
-        <div class="logo-container">
-            <div class="logo-icon">CE</div>
-            <div class="logo-text">CLIENT ENGINEERING<span>BANK</span></div>
+    <!-- Navigation Bar -->
+    <header class="bg-brand-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo area -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('page-main')">
+                    <div class="w-10 h-10 bg-brand-purple text-brand-white rounded-lg flex items-center justify-center font-bold text-xl mr-3">
+                        NB
+                    </div>
+                    <span class="font-bold text-2xl text-brand-purple tracking-tight">Nexus<span class="text-brand-green">Bank</span></span>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="navigate('page-main')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Home</button>
+                    <button onclick="navigate('page-credit-cards')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Credit Cards</button>
+                    <button onclick="navigate('page-payroll')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Payroll</button>
+                    <button onclick="navigate('page-mortgages')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Mortgages</button>
+                    <button onclick="navigate('page-escalations')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Escalations</button>
+                    <button onclick="navigate('page-fraud')" class="nav-link text-gray-600 hover:text-brand-purple font-medium px-3 py-2 rounded-md transition-colors">Fraud Center</button>
+                </nav>
+
+                <!-- Login Button -->
+                <div class="hidden md:flex items-center">
+                    <button class="bg-brand-green hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold transition-all shadow-md">
+                        Log In
+                    </button>
+                </div>
+            </div>
         </div>
-        <nav>
-            <a href="#" class="active">Personal</a>
-            <a href="#">Business</a>
-            <a href="#">Loans</a>
-            <a href="#">Investing</a>
-            <a href="#">Help</a>
-        </nav>
-        <a href="#" class="btn-login">Log In</a>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Welcome to your financial future.</h1>
-                <p>Manage, save, and grow with CE Bank.</p>
-                <div class="hero-actions">
-                    <a href="#" class="btn-primary">Open an Account</a>
-                    <a href="#" class="btn-secondary">Explore Services</a>
-                </div>
+    <!-- Main Content Area -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- 1. MAIN PAGE -->
+        <section id="page-main" class="page-section">
+            <div class="text-center py-20 bg-brand-white rounded-3xl shadow-sm border border-gray-100">
+                <h1 class="text-5xl font-bold text-brand-purple mb-6">Banking made <span class="text-brand-green">simple.</span></h1>
+                <p class="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">Experience a new level of financial clarity with our minimalist approach to banking. Secure, fast, and built around you.</p>
+                <button onclick="navigate('page-credit-cards')" class="bg-brand-purple hover:bg-purple-800 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all shadow-lg">
+                    Explore Our Products
+                </button>
             </div>
-            <div class="hero-images">
-                <div class="hero-img-placeholder">
-                    <!-- Replace with image path e.g. <img src="advisor.jpg" alt="Advisor"> -->
-                    <span>Advisor Image</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <!-- Feature Card 1 -->
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-brand-lightPurple rounded-full flex items-center justify-center mb-4">
+                        <span class="text-brand-purple font-bold text-xl">💳</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Premium Cards</h3>
+                    <p class="text-gray-500">Discover our range of credit cards designed to maximize your rewards.</p>
                 </div>
-                <div class="hero-img-placeholder">
-                    <!-- Replace with image path e.g. <img src="mobile-banking.jpg" alt="Mobile Banking"> -->
-                    <span>Mobile Banking Image</span>
+                <!-- Feature Card 2 -->
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-brand-green font-bold text-xl">🏠</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Home Ownership</h3>
+                    <p class="text-gray-500">Flexible mortgage plans to help you step into your dream home sooner.</p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-red-500 font-bold text-xl">🛡️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Bank Securely</h3>
+                    <p class="text-gray-500">Industry-leading fraud protection keeps your money and data safe 24/7.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features">
-            <!-- Card 1 -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor"/>
-                        <path d="M12 12h.01" stroke="currentColor"/>
-                        <path d="M17 12h.01" stroke="currentColor"/>
-                    </svg>
+        <!-- 2. CREDIT CARDS PAGE -->
+        <section id="page-credit-cards" class="page-section hidden-section">
+            <h2 class="text-3xl font-bold text-brand-purple mb-8 border-b pb-4">Credit Cards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Card 1 -->
+                <div class="bg-brand-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-32 bg-gradient-to-r from-brand-purple to-purple-500 rounded-xl shadow-lg relative overflow-hidden flex-shrink-0">
+                        <div class="absolute top-4 left-4 text-white font-bold tracking-widest text-xs opacity-70">NEXUS BANK</div>
+                        <div class="absolute bottom-4 left-4 text-white font-mono opacity-90">•••• •••• •••• 4281</div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">The Emerald Reserve</h3>
+                        <p class="text-gray-600 mb-4">Earn 3x points on dining and travel. No foreign transaction fees.</p>
+                        <button class="text-brand-green font-semibold hover:underline">Apply Now &rarr;</button>
+                    </div>
                 </div>
-                <h3>Checking & Savings</h3>
-                <p>Earn higher interest and enjoy zero monthly fees.</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10z" stroke="currentColor"/>
-                        <path d="M9 21V12h6v9" stroke="currentColor"/>
-                    </svg>
+                <!-- Card 2 -->
+                <div class="bg-brand-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-32 bg-gradient-to-r from-gray-700 to-gray-900 rounded-xl shadow-lg relative overflow-hidden flex-shrink-0">
+                        <div class="absolute top-4 left-4 text-white font-bold tracking-widest text-xs opacity-70">NEXUS BANK</div>
+                        <div class="absolute bottom-4 left-4 text-white font-mono opacity-90">•••• •••• •••• 9920</div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Minimalist Cash</h3>
+                        <p class="text-gray-600 mb-4">A simple 2% cash back on every purchase, everywhere, every time.</p>
+                        <button class="text-brand-green font-semibold hover:underline">Apply Now &rarr;</button>
+                    </div>
                 </div>
-                <h3>Home & Auto Loans</h3>
-                <p>Get competitive rates and quick online approval.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M3 17l6-6 4 4 8-8" stroke="currentColor"/>
-                        <path d="M14 7h7v7" stroke="currentColor"/>
-                    </svg>
-                </div>
-                <h3>Investment Planning</h3>
-                <p>Secure your future with personalized wealth management.</p>
             </div>
         </section>
+
+        <!-- 3. PAYROLL PAGE -->
+        <section id="page-payroll" class="page-section hidden-section">
+            <div class="bg-brand-white rounded-3xl p-10 shadow-sm border border-gray-100">
+                <div class="max-w-3xl">
+                    <h2 class="text-3xl font-bold text-brand-purple mb-4">Business Payroll Solutions</h2>
+                    <p class="text-lg text-gray-600 mb-8">Streamline your business operations with our automated payroll services. We handle the math, the taxes, and the direct deposits so you can focus on growing your business.</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center mr-3 text-sm">✓</span>
+                            Same-day direct deposit for all employees
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center mr-3 text-sm">✓</span>
+                            Automated local, state, and federal tax filings
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-6 h-6 bg-brand-green text-white rounded-full flex items-center justify-center mr-3 text-sm">✓</span>
+                            Integration with top accounting software
+                        </li>
+                    </ul>
+                    <button class="bg-brand-purple hover:bg-purple-800 text-white px-8 py-3 rounded-md font-semibold transition-all">
+                        Talk to a Business Specialist
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MORTGAGES PAGE -->
+        <section id="page-mortgages" class="page-section hidden-section">
+            <h2 class="text-3xl font-bold text-brand-purple mb-8 border-b pb-4">Home Mortgages</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Find your way home.</h3>
+                    <p class="text-gray-600 mb-6">Whether you are buying your first home or refinancing your current one, we offer competitive rates and a radically transparent process.</p>
+                    
+                    <div class="bg-brand-lightPurple p-6 rounded-xl border border-purple-200">
+                        <h4 class="font-bold text-brand-purple mb-2">Today's Featured Rates</h4>
+                        <div class="flex justify-between items-center border-b border-purple-200 py-2">
+                            <span class="text-gray-700">30-Year Fixed</span>
+                            <span class="font-bold text-brand-green text-xl">6.24%</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-gray-700">15-Year Fixed</span>
+                            <span class="font-bold text-brand-green text-xl">5.75%</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">*Rates are subject to change. APR may vary.</p>
+                    </div>
+                </div>
+
+                <!-- Mock Calculator -->
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h4 class="font-bold text-xl text-gray-800 mb-6">Quick Estimate</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Home Price</label>
+                            <input type="text" placeholder="$400,000" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-purple">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Down Payment</label>
+                            <input type="text" placeholder="$80,000 (20%)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-purple">
+                        </div>
+                        <button class="w-full bg-brand-green hover:bg-emerald-600 text-white py-3 rounded-md font-bold mt-4 transition-colors">
+                            Calculate Payment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ESCALATIONS PAGE -->
+        <section id="page-escalations" class="page-section hidden-section">
+             <div class="max-w-2xl mx-auto bg-brand-white rounded-3xl p-10 shadow-sm border border-gray-100 text-center">
+                <div class="w-16 h-16 bg-brand-lightPurple rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-brand-purple text-2xl font-bold">✉️</span>
+                </div>
+                <h2 class="text-3xl font-bold text-brand-purple mb-4">Need further assistance?</h2>
+                <p class="text-gray-600 mb-8">We strive for perfection, but if something went wrong, our Escalations Team is here to make it right. Please provide the details of your unresolved issue.</p>
+                
+                <form class="text-left space-y-4" onsubmit="event.preventDefault();">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Account Number (Last 4 digits)</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-purple" placeholder="e.g. 1234">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description of Issue</label>
+                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-purple" placeholder="Please describe what happened..."></textarea>
+                    </div>
+                    <button class="w-full bg-brand-purple hover:bg-purple-800 text-white py-3 rounded-md font-bold mt-4 transition-colors">
+                        Submit Escalation Request
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 6. FRAUD PAGE -->
+        <section id="page-fraud" class="page-section hidden-section">
+            <h2 class="text-3xl font-bold text-brand-purple mb-8 border-b pb-4">Fraud Center</h2>
+            
+            <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl mb-10">
+                <h3 class="text-xl font-bold text-red-700 mb-2">Immediate Action Required?</h3>
+                <p class="text-red-600 mb-4">If you notice unauthorized transactions, lose your card, or suspect identity theft, act immediately.</p>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-md font-bold transition-colors shadow-sm">
+                    Lock My Account
+                </button>
+                <span class="ml-4 text-red-800 font-medium">Or call us 24/7 at 1-800-NEXUS-99</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Report Suspicious Activity</h4>
+                    <p class="text-gray-600 mb-4">Received a strange email pretending to be us? Do not click any links. Forward it to our security team.</p>
+                    <a href="#" class="text-brand-green font-bold hover:underline">spoof@nexusbank.mock</a>
+                </div>
+                
+                <div class="bg-brand-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Security Best Practices</h4>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Enable Two-Factor Authentication (2FA)</li>
+                        <li>Use a strong, unique password</li>
+                        <li>Never share your PIN with anyone</li>
+                        <li>Monitor your statements regularly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer Links -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Security</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact Us</a>
+    <!-- Simple Footer -->
+    <footer class="bg-brand-white border-t border-gray-200 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 Nexus Bank Mockup. All rights reserved.</p>
+            <p class="mt-2">This is a mock application built for demonstration purposes only.</p>
         </div>
     </footer>
 
-    <!-- Floating Chat Widget -->
-    <div class="chat-widget">
-        <div class="chat-icon"></div>
-        <span>Let's talk!</span>
-    </div>
-
+    <!-- JavaScript to handle navigation -->
+    <script>
+        /**
+         * This function handles showing the correct page and hiding the others.
+         * @param {string} targetPageId - The ID of the section we want to show.
+         */
+        function navigate(targetPageId) {
+            // 1. Get all sections that have the class 'page-section'
+            const allPages = document.querySelectorAll('.page-section');
+            
+            // 2. Loop through each section and hide it by adding our 'hidden-section' class
+            allPages.forEach(page => {
+                page.classList.add('hidden-section');
+            });
+            
+            // 3. Find the specific page the user clicked on, and remove the hidden class
+            const targetPage = document.getElementById(targetPageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden-section');
+            }
+            
+            // Optional: Scroll to the top of the page when navigating
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
