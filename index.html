@@ -1,92 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-US">
 <head>
-    <script async src="https://api.beta.glia.com/salemove_integration.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mock Bank - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            purple: '#6B21A8', // Tailwind Purple 800
-                            green: '#15803D',  // Tailwind Green 700
-                            light: '#F3F4F6'   // Off-white/gray for background
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d2340"><meta name="description" content="NexusBank is a fictional digital banking experience featuring interactive product and support demonstrations.">
+  <title>NexusBank — Banking, thoughtfully simplified</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/nexus-mark.svg"><link rel="stylesheet" href="css/styles.css"><script src="js/main.js" defer></script>
 </head>
-<body class="bg-brand-light font-sans text-gray-800">
-
-    <!-- Navigation Bar -->
-    <nav class="bg-brand-purple text-white p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight">Mock Bank</h1>
-            <ul class="flex space-x-6">
-                <!-- Enlaces reales a otras páginas -->
-                <li><a href="index.html" class="hover:text-brand-green font-semibold underline">Home</a></li>
-                <li><a href="credit-cards.html" class="hover:text-brand-green font-semibold">Credit Cards</a></li>
-                <li><a href="payroll.html" class="hover:text-brand-green font-semibold">Payroll</a></li>
-                <li><a href="mortgages.html" class="hover:text-brand-green font-semibold">Mortgages</a></li>
-                <li><a href="escalations.html" class="hover:text-brand-green font-semibold">Escalations</a></li>
-                <li><a href="fraud.html" class="text-red-300 hover:text-red-100 font-bold">Fraud</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <main class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-sm border-t-4 border-brand-green">
-        <h2 class="text-3xl font-bold text-brand-purple mb-4">Welcome to Mock Bank</h2>
-        <p class="text-lg">Manage your finances with confidence. Select a product from the menu above.</p>
-        <p class="mt-4 text-sm text-gray-500">URL Actual: <span id="current-url-display"></span></p>
-    </main>
-
-    <!-- Motor de Reglas de Negocio Simulado -->
-    <script>
-        // 1. Mostrar la URL actual (para propósitos educativos y de prueba)
-        document.getElementById('current-url-display').textContent = window.location.pathname;
-
-        // 2. Definir las reglas basadas en RegEx contra la URL
-        const businessRules = [
-            {
-                name: "High-Value Mortgage Assistance",
-                regex: /mortgages\.html/i,
-                action: () => {
-                    console.log("🔥 BUSINESS RULE: Mortgage page detected.");
-                    setTimeout(() => alert("GLIA RULE TRIGGERED: Chat with a Mortgage Specialist!"), 500);
-                }
-            },
-            {
-                name: "Fraud Urgent Escalation",
-                regex: /(fraud|escalations)\.html/i,
-                action: () => {
-                    console.log("🚨 BUSINESS RULE: Fraud or Escalation page detected.");
-                    setTimeout(() => alert("GLIA RULE TRIGGERED: Priority Routing Enabled."), 500);
-                }
-            }
-        ];
-
-        // 3. Evaluar la ruta actual
-        function evaluateRules() {
-            const currentPath = window.location.pathname;
-            console.log(`Evaluando reglas para la URL: ${currentPath}`);
-            
-            businessRules.forEach(rule => {
-                if (rule.regex.test(currentPath)) {
-                    rule.action();
-                }
-            });
-        }
-
-        // Ejecutar las reglas tan pronto como la página cargue
-        window.onload = evaluateRules;
-    </script>
+<body data-page="main">
+  <a class="sr-only" href="#main">Skip to content</a>
+  <div class="notice">Fictional banking simulator · No real accounts, deposits, or services</div>
+  <header class="site-header"><div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="NexusBank home"><img src="assets/images/nexus-mark.svg" alt=""><strong>Nexus<span>Bank</span></strong></a>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation"><a href="index.html" aria-current="page">Main</a><a href="credit-card.html">Credit Card</a><a href="mortgages.html">Mortgages</a><a href="payroll.html">Payroll</a><a href="fraud-disputes.html">Fraud &amp; Disputes</a></nav>
+    <div class="header-cta"><a class="btn btn-outline btn-sm" href="fraud-disputes.html">Safety Center <span aria-hidden="true">↗</span></a><button class="menu-toggle" id="menuToggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Open navigation">☰</button></div>
+  </div></header>
+  <main id="main">
+    <div class="hero-wrap"><div class="container"><section class="dark-hero hero-main" aria-labelledby="hero-title">
+      <div class="hero-copy"><span class="eyebrow light">The next standard of everyday banking</span><h1 id="hero-title">More clarity.<br>More possibility.</h1><p>A calmer way to explore money. Meet a thoughtfully designed digital banking experience built around everyday decisions and bigger ambitions.</p><div class="hero-actions"><a class="btn btn-white" href="#solutions">Explore our products <span aria-hidden="true">↗</span></a><a class="btn btn-outline" style="border-color:#627b9c;color:#fff" href="fraud-disputes.html">Explore safety tools</a></div><div class="hero-proof"><span><b>01</b> Clear choices</span><span><b>02</b> Intuitive tools</span><span><b>03</b> Demo-first safety</span></div></div>
+      <div class="hero-art" aria-hidden="true"><div class="bank-card"><div class="card-top"><span class="card-logo">NexusBank</span><span>✦</span></div><div class="card-mid">•••• &nbsp; •••• &nbsp; 2048</div><div class="card-bottom"><span>DEMO CARD</span><span>VIRTUAL ONLY</span></div></div><div class="floating-balance"><small class="muted upper">Sample balance</small><div class="balance-value">$24,680.40</div><small style="color:#0d8064">↗ Illustrative activity</small><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+    </section></div></div>
+    <div class="container"><div class="metric-row"><div><strong>Five spaces.</strong><span>One seamless demonstration</span></div><div><strong>100% fictional.</strong><span>No actual bank accounts or money movement</span></div><div><strong>Designed to explore.</strong><span>Interactive examples in your browser</span></div></div></div>
+    <section class="section" id="solutions"><div class="container"><div class="section-head"><div><span class="eyebrow">Explore NexusBank</span><h2>Financial possibilities,<br>made easy to navigate.</h2></div><p>From daily purchases to major milestones, discover the products and services you might expect from a modern US bank—within a safe simulation.</p></div>
+      <div class="grid-4">
+        <article class="card feature"><div class="icon-badge" aria-hidden="true">▣</div><h3>Credit Cards</h3><p>Compare rewards, fees, and illustrative APRs with a clearer view of the tradeoffs.</p><a href="credit-card.html" class="link-arrow">Explore cards</a></article>
+        <article class="card feature"><div class="icon-badge" aria-hidden="true">⌂</div><h3>Mortgages</h3><p>Estimate monthly payments and explore financing structures for a future home.</p><a href="mortgages.html" class="link-arrow">Explore mortgages</a></article>
+        <article class="card feature"><div class="icon-badge" aria-hidden="true">↗</div><h3>Payroll</h3><p>See how direct deposit and smart paycheck allocation could simplify payday.</p><a href="payroll.html" class="link-arrow">Explore payroll</a></article>
+        <article class="card feature"><div class="icon-badge" aria-hidden="true">◇</div><h3>Fraud &amp; Disputes</h3><p>Report sample fraud, dispute a transaction, and track a demonstration case.</p><a href="fraud-disputes.html" class="link-arrow">Visit safety center</a></article>
+      </div>
+    </div></section>
+    <section class="section alt"><div class="container split-feature"><div class="editorial-panel"><div class="activity-mock"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><strong>Recent activity</strong><span class="pill">Demo account</span></div><div class="row-data"><span class="display-row"><span class="dot">↗</span><span><b>Payroll Deposit</b><small>Oct 23 · Direct deposit</small></span></span><b style="color:#0e8064">+$3,820.40</b></div><div class="row-data"><span class="display-row"><span class="dot">◈</span><span><b>Harbor Coffee</b><small>Oct 19 · Purchase</small></span></span><b>−$18.40</b></div><div class="row-data"><span class="display-row"><span class="dot">⌂</span><span><b>Monthly Savings</b><small>Oct 17 · Transfer</small></span></span><b>−$500.00</b></div></div><p class="fineprint" style="position:relative;z-index:1;margin:18px 0 0">A sample activity view. No financial transactions are processed.</p></div>
+      <div><span class="eyebrow">A more human perspective</span><h2>Make informed moves with room to breathe.</h2><p>Good digital banking should feel understandable at every turn. NexusBank puts useful comparisons, plain-language explanations, and context-sensitive actions in one cohesive space.</p><ul class="feature-list"><li>Explore product terms side by side before making a hypothetical choice.</li><li>Try practical tools such as a mortgage estimator and paycheck allocator.</li><li>Practice reporting and tracking issues with invented records.</li></ul><a href="mortgages.html" class="link-arrow space-top">Try a financial calculator</a></div>
+    </div></section>
+    <section class="section"><div class="container"><div class="section-head"><div><span class="eyebrow">Security, with context</span><h2>Practice the response,<br>not just the prevention.</h2></div><p>A dedicated simulation for the moments when suspicious activity has already happened.</p></div><div class="grid-3">
+      <article class="card soft"><div class="icon-badge" aria-hidden="true">!</div><h3>Report suspected fraud</h3><p class="muted">Select a fictional transaction, describe a scenario, and receive a sample reference number.</p></article>
+      <article class="card soft"><div class="icon-badge" aria-hidden="true">≋</div><h3>Track a case</h3><p class="muted">Review status updates, timestamps, and simulated resolution stages.</p></article>
+      <article class="card soft"><div class="icon-badge" aria-hidden="true">◇</div><h3>Explore safety actions</h3><p class="muted">Practice locking a demo card or reviewing recent activity—without affecting any real account.</p></article>
+    </div><div class="space-top"><a href="fraud-disputes.html" class="btn btn-dark">Go to Fraud &amp; Disputes <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="section" style="padding-top:0"><div class="container"><div class="cta-band"><div><span class="eyebrow light">Explore with confidence</span><h2>Every feature. One thoughtful experience.</h2><p>Browse the simulator at your own pace. No registration or real credentials required.</p></div><a href="credit-card.html" class="btn btn-white">Start exploring <span aria-hidden="true">→</span></a></div></div></section>
+  </main>
+  <section class="problem-strip" aria-label="Platform problem reporting"><div class="container problem-inner"><div><h3>Something not working as expected?</h3><p>Send a simulated platform issue report. This is separate from a fraud report.</p></div><button type="button" class="btn btn-outline" data-open-problem>Report a Problem</button></div></section>
+  <footer class="footer"><div class="container"><div class="footer-main"><div><a href="index.html" class="brand"><img src="assets/images/nexus-mark.svg" alt=""><strong>Nexus<span>Bank</span></strong></a><p>A premium digital banking concept built for exploration. NexusBank is not a real bank or financial institution.</p></div><div><h4>Explore</h4><ul><li><a href="index.html">Main</a></li><li><a href="credit-card.html">Credit Card</a></li><li><a href="mortgages.html">Mortgages</a></li></ul></div><div><h4>Services</h4><ul><li><a href="payroll.html">Payroll</a></li><li><a href="fraud-disputes.html">Fraud &amp; Disputes</a></li><li><a href="fraud-disputes.html#caseTracking">Demo Case Tracking</a></li></ul></div><div><h4>Important</h4><p>All offers, rates, balances, transactions, and case updates are invented. Nothing here is financial advice or a real banking service.</p></div></div><div class="footer-bottom"><span>© 2026 NexusBank Simulator. Fictional concept. Not FDIC insured. No actual banking services.</span><span>US English · USD · Designed for education &amp; prototyping</span></div></div></footer>
+  <dialog id="demoModal" class="modal" aria-labelledby="modalTitle"><div class="modal-head"><h2 id="modalTitle"></h2><button type="button" class="modal-close" aria-label="Close dialog" onclick="this.closest('dialog').close()">×</button></div><div class="modal-body" id="modalBody"></div></dialog>
 </body>
 </html>
-

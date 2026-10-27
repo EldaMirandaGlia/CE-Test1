@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NexusBank symbol">
+  <rect width="64" height="64" rx="16" fill="#0d2340"/>
+  <path d="M15 45V19h7l20 25V19h7v26h-7L22 20v25z" fill="#f7fbff"/>
+  <path d="M42 45h7v-7z" fill="#5a95f1"/>
+</svg>
