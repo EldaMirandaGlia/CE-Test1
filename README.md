@@ -1,8 +1,6 @@
 # NexusBank — Banking Website Simulator
 
-Prototipo de banca digital estadounidense, **100% ficticio**, con cinco páginas HTML independientes, diseño responsive y funciones que se ejecutan exclusivamente en el navegador. No utiliza backend, frameworks, cuentas reales ni dependencias externas. Todos los textos de la interfaz están en inglés estadounidense y las cantidades monetarias en USD.
-
-> **Importante:** NexusBank no es un banco ni una entidad financiera. No procesa pagos, solicitudes de crédito, reportes reales de fraude, disputas, depósitos de nómina o consultas de soporte. Nunca introduzcas contraseñas, CVV, números de tarjeta, SSN, datos bancarios verdaderos ni información personal sensible.
+Prototipo de banca digital, **100% ficticio**, con cinco páginas HTML independientes, diseño responsive y funciones que se ejecutan exclusivamente en el navegador. No utiliza backend, frameworks, cuentas reales ni dependencias externas.
 
 ## Estructura
 
